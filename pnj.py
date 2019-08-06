@@ -315,7 +315,7 @@ PNJ = {
 "Zombie" : Zombie
 }
 
-def getPNG(name):
+def getPNJ(name):
     try:
         pnj = PNJ[name]
     except:
