@@ -96,7 +96,7 @@ class Combattant():
                         self.selected_arme = self.arme_dist
 
         else:
-            if self.mode_combat == 'Contact':
+            if self.mode_combat == 'Contact' or self.mode_combat == 'Mains Nues':
                 self.selected_att = rd.choice(self.techniques_contact)
                 self.allow_parade = self.selected_att.allow_parade
                 if self.parades_contact != []:
@@ -105,16 +105,24 @@ class Combattant():
             else:
                 if self.chgt_arme:
                     if self.pnj:
-                        self.mode_combat = 'Contact'
-                        self.selected_arme = self.arme_contact
+                        if self.arme_contact != None:
+                            self.mode_combat = 'Contact'
+                            self.selected_arme = self.arme_contact
+                        else:
+                            self.mode_combat = 'Mains Nues'
+                            self.selected_arme = None
                         self.selected_att = rd.choice(self.techniques_contact)
                         self.allow_parade = self.selected_att.allow_parade
                         if self.parades_contact != []:
                             self.selected_par = rd.choice(self.parades_contact)
                             self.allow_att = self.selected_par.allow_att
                     else:
-                        self.mode_combat = 'Contact'
-                        self.selected_arme = self.arme_contact
+                        if self.arme_contact != None:
+                            self.mode_combat = 'Contact'
+                            self.selected_arme = self.arme_contact
+                        else:
+                            self.mode_combat = 'Mains Nues'
+                            self.selected_arme = None
                 else:
                     self.selected_att = rd.choice(self.techniques_dist)
                     self.allow_parade = self.selected_att.allow_parade
@@ -130,8 +138,10 @@ class Combattant():
         diff = self.carac['INT']
         if self.mode_combat == 'Distance':
             diff += self.carac['CombatDistance']
-        else:
+        elif self.mode_combat == 'Contact':
             diff += self.carac['CombatContact']
+        else:
+            diff += self.carac['CombatMainsNues']
         diff -= (self.selected_par.diff + 5)
         if Jet(diff):
             self.malus_att, self.bonus_div, self.eff_dist, self.eff_contact, self.eff_mn, self.prior, self.bcontre, self.mod_dist = \
@@ -144,8 +154,10 @@ class Combattant():
     def attaque(self, tgt):
         if self.mode_combat == 'Distance':
             diff = self.carac['PER'] + self.carac['CombatDistance'] + self.bonus_jet
-        else:
+        elif self.mode_combat == 'Contact':
             diff = self.carac['FOR'] + self.carac['CombatContact'] + self.bonus_jet
+        else:
+            diff = self.carac['FOR'] + self.carac['CombatMainsNues'] + self.bonus_jet
             
         diff -= (self.selected_arme.malus_jet + self.selected_att.diff + 5)
         

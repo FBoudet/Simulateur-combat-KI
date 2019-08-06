@@ -101,8 +101,8 @@ def Reset(Groupe):
         cbt.ccont = False
         cbt.cmn = False
         cbt.allow_degats = True
-        if cbt.desarm:
-            cbt.arme = 0
+        #if cbt.desarm:
+         #   cbt.arme = 0
         cbt.desarm = False
         cbt.allow_parade = True
         cbt.malus_parade = 1
