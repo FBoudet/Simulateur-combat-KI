@@ -122,9 +122,11 @@ class Combattant():
             diff += self.carac['CombatContact']
         diff -= (self.selected_par.diff + 5)
         if Jet(diff):
-            self.malus_att, self.bonus_def, self.bonus_div, self.eff_dist, self.eff_contact, self.eff_mn, self.prior, self.bcontre, self.mod_dist = \
-            self.selected_par.matt, self.selected_par.bdef, self.selected_par.bdiv, self.selected_par.eff_dist, self.selected_par.eff_contact, \
+            self.malus_att, self.bonus_div, self.eff_dist, self.eff_contact, self.eff_mn, self.prior, self.bcontre, self.mod_dist = \
+            self.selected_par.matt, self.selected_par.bdiv, self.selected_par.eff_dist, self.selected_par.eff_contact, \
             self.selected_par.eff_mn, self.selected_par.prior, self.selected_par.bcontre, self.selected_par.mod_dist
+            if self.selected_par != 0:
+                self.bonus_def = rd.randint(1,self.selected_par.bdef)
 
 
     def attaque(self, tgt):
