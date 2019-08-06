@@ -159,7 +159,8 @@ class Combattant():
         else:
             diff = self.carac['FOR'] + self.carac['CombatMainsNues'] + self.bonus_jet
             
-        diff -= (self.selected_arme.malus_jet + self.selected_att.diff + 5)
+        if self.selected_arme is not None:
+            diff -= (self.selected_arme.malus_jet + self.selected_att.diff + 5)
         
         if self.selected_att.cdist and tgt.eff_dist or self.selected_att.ccont and tgt.eff_contact or self.selected_att.cmn and tgt.eff_mn:
             diff -= self.selected_att.malus_parade*tgt.malus_att
@@ -180,7 +181,10 @@ class Combattant():
             else:
                 degats = att.carac['FOR']
         
-                degats += rd.randint(1,4) + att.bonus_att + att.selected_arme.bonus_dgt - att.malus_armure*self.armure
+                degats += rd.randint(1,4) + att.bonus_att  - att.malus_armure*self.armure
+                if self.selected_arme is not None:
+                    print(self.selected_arme)
+                    degats += att.selected_arme.bonus_dgt
                 
                 if att.cdist and self.eff_dist or att.ccont and self.eff_contact or att.cmn and self.eff_mn:
                     degats -= self.bonus_def
