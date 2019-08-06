@@ -9,29 +9,41 @@ class Combattant():
         self.carac = carac
         self.chgt_arme = chgt_arme
         self.selected_arme = None
-        if chgt_arme:
-            self.arme_contact = selectArme(armes[0])
-            self.arme_dist = selectArme(armes[1])
-            self.parades_contact, self.techniques_contact = styleCombat(styles[0], niveau[0])
-            self.parades_dist, self.techniques_dist = styleCombat(styles[1], niveau[1])
-        else:
-            self.arme = selectArme(armes)
-            if self.arme.portee > 0:
-                self.arme_dist = self.arme
-                self.selected_arme = self.arme_dist
+        if chgt_arme: #si peut changer d'arme
+            if len(armes) == 2: #s'il a 2 armes, comme il peut changer d'arme c'est qu'il a style de combat contact
+                self.arme_contact = selectArme(armes[0])
+                self.arme_dist = selectArme(armes[1])
+                self.parades_contact, self.techniques_contact = styleCombat(styles[0], niveau[0])
+                self.parades_dist, self.techniques_dist = styleCombat(styles[1], niveau[1])
+            else: #sinon c'est qu'il a un style de combat à mains nues (et une arme à distance)
+                self.arme_dist = armes
                 self.arme_contact = None
-                self.parades_dist, self.techniques_dist = styleCombat(styles, niveau)
-                self.parades_contact = None
-                self.techniques_contact = None
-                self.mode_combat = 'Distance'
-            else:
-                self.arme_contact = self.arme
-                self.selected_arme = self.arme_contact
-                self.arme_dist = None
+                self.parades_contact, self.techniques_contact = styleCombat(styles[0], niveau[0])
+                self.parades_dist, self.techniques_dist = styleCombat(styles[1], niveau[1])
+        else: #s'il ne peut pas changer d'arme
+            if armes != None: #on vérifie qu'il a une arme
+                self.arme = selectArme(armes)
+                if self.arme.portee > 0: #si cette arme est une arme à distance, comme il ne peut pas changer d'arme ça signifie qu'il a un stylede combat à distance
+                    self.arme_dist = self.arme
+                    self.selected_arme = self.arme_dist
+                    self.arme_contact = None
+                    self.parades_dist, self.techniques_dist = styleCombat(styles, niveau)
+                    self.parades_contact = None
+                    self.techniques_contact = None
+                    self.mode_combat = 'Distance'
+                else: #sinon c'est qu'il a un style de combat contact, sans arme à distance
+                    self.arme_contact = self.arme
+                    self.selected_arme = self.arme_contact
+                    self.arme_dist = None
+                    self.parades_contact, self.techniques_contact = styleCombat(styles, niveau)
+                    self.parades_dist = None
+                    self.techniques_dist = None
+                    self.mode_combat = 'Contact'
+            else: #s'il n'a pas d'arme, ça signifie qu'il a un style de combat à mains nues et qu'il n'a pas d'are à distance
                 self.parades_contact, self.techniques_contact = styleCombat(styles, niveau)
                 self.parades_dist = None
                 self.techniques_dist = None
-                self.mode_combat = 'Contact'
+                self.mode_combat = 'Mains Nues'
         self.selected_att = None
         self.selected_par = None
         self.armure = armure
@@ -125,7 +137,7 @@ class Combattant():
             self.malus_att, self.bonus_div, self.eff_dist, self.eff_contact, self.eff_mn, self.prior, self.bcontre, self.mod_dist = \
             self.selected_par.matt, self.selected_par.bdiv, self.selected_par.eff_dist, self.selected_par.eff_contact, \
             self.selected_par.eff_mn, self.selected_par.prior, self.selected_par.bcontre, self.selected_par.mod_dist
-            if self.selected_par != 0:
+            if self.selected_par.bdef != 0:
                 self.bonus_def = rd.randint(1,self.selected_par.bdef)
 
 

@@ -89,7 +89,7 @@ Styles = {
 "Lame Défensive" : ([Parade_, Feinte, Botte_Contre], [Coup, Riposte, Desarmement, Botte_Riposte]),
 "Lame Violente" : ([Parade_, Feinte, Intimidation], [Coup, Charge, Frenesie, Bris_Armure]),
 "Lame avec Panache" : ([Parade_, Feinte, Tour_Chauffe], [Coup, Charge, Deculottage, Botte_Elegante]),
-"Tireur d'Elite" : ([Camouflage, Parade_Maladroite, Maintien_Distance], [Tir, Tir_Instinctif, Precision, Rapidite_Tir]),
+"Tireur d'Élite" : ([Camouflage, Parade_Maladroite, Maintien_Distance], [Tir, Tir_Instinctif, Precision, Rapidite_Tir]),
 "Guérilla" : ([Camouflage, Parade_Maladroite, Couverture], [Tir, Tir_Instinctif, Harcelement, Tete_Brulee]),
 "Desperado" : ([Camouflage, Parade_Maladroite, Plus_Vite_Que_Son_Ombre], [Tir, Tir_Instinctif, Degainer, Rapidite_Tir]),
 "Base Mains Nues" : ([], [Coup_de_Poing]),
