@@ -1,6 +1,7 @@
 import numpy as np
 from combat import RandCombat
 from combattant import Combattant
+from pnj import getPNJ
 
 #Combattant(PV,caracs={FOR,PER,INT,CombatContact,CombatDistance},Chgt d'arme?,(Style contact,Style dist),(niv contact,niv dist),(arme contact,arme dist),armure,pnj?)
 E = []
@@ -9,6 +10,7 @@ for i in range(n_test):
     C1 = Combattant(30,{'PER':8,'INT':7,'CombatDistance':7},False,'Test_Distance',2,'Lance-Roquettes',4,0,0,False)
     C2 = Combattant(65,{'FOR':7,'PER':5,'INT':4,'CombatContact':5,'CombatDistance':3},True,('Lame Défensive','Base Distance'),(5,0),('Hallebarde','Fouet'),2)
     C3 = Combattant(30,{'PER':8,'INT':7,'CombatDistance':7},False,'Test_Distance',2,'Fouet',4,0,0,False)
+    C4 = getPNJ('Géant des Montagnes')
 
     E.append(RandCombat([C1],[C3],3))
 
