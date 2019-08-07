@@ -5,7 +5,7 @@ class Arme():
         self.malus_jet = malus_jet
 
 ############## LISTE DES ARMES DISPONIBLES ###############
-        
+
 #Contact
 Baton = Arme(1)
 Couteau = Arme(2)
@@ -16,7 +16,7 @@ Hallebarde = Arme(6,0,2)
 Epee_Magique = Arme(6)
 Machette = Arme(2)
 Rasoir = Arme(0)
-        
+
 #Distance
 Fronde = Arme(1,2)
 Arc = Arme(2,2)
@@ -50,6 +50,8 @@ Armes = {
 'Lance-Flammes' : Lance_Flammes,
 'Fouet' : Fouet
 }
+for key in Armes:
+    Armes[key].__name__ = key
 
 def selectArme(name):
     try:

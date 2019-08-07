@@ -70,7 +70,7 @@ class Combattant():
         self.allow_parade = True
         self.malus_armure = 1
         self.bris_armure = False
-        
+
     def select_techniques(self, dist):
         if dist > 0:
             if self.mode_combat == 'Distance':
@@ -129,7 +129,7 @@ class Combattant():
                     if self.parades_dist != []:
                         self.selected_par = rd.choice(self.parades_dist)
                         self.allow_att = self.selected_par.allow_att
-        
+
         if not self.allow_att and not self.allow_parade:
             self.allow_parade = True
 
@@ -158,13 +158,13 @@ class Combattant():
             diff = self.carac['FOR'] + self.carac['CombatContact'] + self.bonus_jet
         else:
             diff = self.carac['FOR'] + self.carac['CombatMainsNues'] + self.bonus_jet
-            
+
         if self.selected_arme is not None:
             diff -= (self.selected_arme.malus_jet + self.selected_att.diff + 5)
-        
+
         if self.selected_att.cdist and tgt.eff_dist or self.selected_att.ccont and tgt.eff_contact or self.selected_att.cmn and tgt.eff_mn:
             diff -= self.selected_att.malus_parade*tgt.malus_att
-        
+
         if Jet(diff, tgt.bcontre):
             self.bonus_att, self.malus_armure, self.allow_degats = self.selected_att.bdeg, self.selected_att.malus_armure, self.selected_att.allow_degats
             self.cdist, self.ccont, self.cmn = self.selected_att.cdist, self.selected_att.ccont, self.selected_att.cmn
@@ -180,22 +180,16 @@ class Combattant():
                 degats = att.carac['PER']//2 + att.carac['PER']%2
             else:
                 degats = att.carac['FOR']
-        
                 degats += rd.randint(1,4) + att.bonus_att  - att.malus_armure*self.armure
-                if self.selected_arme is not None:
-                    print(self.selected_arme)
+                if att.selected_arme is not None:
                     degats += att.selected_arme.bonus_dgt
-                
+
                 if att.cdist and self.eff_dist or att.ccont and self.eff_contact or att.cmn and self.eff_mn:
                     degats -= self.bonus_def
-                            
+
                 degats = degats//self.bonus_div
                 degats = max(0,degats)
         else:
             degats = 0
-            
+
         self.pv -= degats
-
-
-            
-            

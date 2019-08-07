@@ -17,6 +17,7 @@ def RandCombat(Groupe1, Groupe2, dist):
     Round = 0
     mdist = 0
     while Round<500 and len(Groupe1)>0 and len(Groupe2)>0:
+        # print('Round {}, distance {}'.format(Round,dist))
         # print(Groupe1[0].pv,Groupe2[0].pv)
 
         for cbt in Groupe1:
@@ -70,7 +71,7 @@ def RandCombat(Groupe1, Groupe2, dist):
         if dist > 0 and mdist < 1000:
             dist -= 1
         #dist = max(0, dist + mod_dist)
-        
+
         Reset(Groupe1)
         Reset(Groupe2)
         Round += 1
