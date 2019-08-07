@@ -8,25 +8,16 @@ E = []
 n_test = 10000
 
 for i in range(n_test):
-<<<<<<< Updated upstream
-    Reiz = Combattant(30,{'PER':8,'INT':7,'CombatDistance':7},False,'Test_Distance',2,'Fusil',4,0,0,False)
-    Reiz2 = Combattant(30,{'PER':8,'INT':7,'CombatDistance':7},False,'Test_Distance',2,'Fusil',4,0,0,False)
-=======
     Reiz = Combattant(30,{'PER':8,'INT':7,'CombatDistance':7},chgt_arme=False,styles='Test_Distance',niveau=2,armes='Fusil',armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
->>>>>>> Stashed changes
     C2 = Combattant(65,{'FOR':7,'PER':5,'INT':4,'CombatMainsNues':7,'CombatContact':5,'CombatDistance':3},True,('Lame Défensive','Base Distance'),(5,0),('Hallebarde','Arc Long'),2)
     Daven = Combattant(pv=30,carac={'FOR':9,'INT':3,'CombatMainsNues':4},chgt_arme=False,styles='Arts Martiaux',niveau=1,armes=None,armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
     C4 = getPNJ('Géant des Montagnes')
 
-<<<<<<< Updated upstream
     Result, Log = RandCombat([Daven],[C4],0)
     E.append(Result)
     # if Result == 'Groupe1':
     #     print(Log)
 
-=======
-    E.append(RandCombat([Daven],[C4],0))
->>>>>>> Stashed changes
 
 result = np.array(E)
 g1=np.sum(result=='Groupe1')
