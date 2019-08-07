@@ -13,7 +13,7 @@ for i in range(n_test):
     Daven = Combattant(pv=30,carac={'FOR':4,'INT':3,'CombatMainsNues':4},chgt_arme=False,styles='Arts Martiaux',niveau=1,armes=None,armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
     C4 = getPNJ('Géant des Montagnes')
 
-    E.append(RandCombat([Daven],[C4],3))
+    E.append(RandCombat([Reiz],[Reiz],0))
 
 result = np.array(E)
 g1=np.sum(result=='Groupe1')

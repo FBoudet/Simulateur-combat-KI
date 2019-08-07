@@ -82,6 +82,7 @@ def RandCombat(Groupe1, Groupe2, dist):
     elif Groupe2 != [] and Groupe1 == []:
         return 'Groupe2'
     else :
+        print(Round)
         return 'draw'
 
 def Reset(Groupe):
