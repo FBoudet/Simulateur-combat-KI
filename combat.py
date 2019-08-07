@@ -112,5 +112,6 @@ def Reset(Groupe):
             cbt.armure -= 1
         cbt.bris_armure = False
 
+    # print('snd',cbt.pv, type(cbt.pv))
     if cbt.pv <= 0:
         Groupe.remove(cbt)
