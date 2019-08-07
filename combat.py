@@ -44,26 +44,30 @@ def RandCombat(Groupe1, Groupe2, dist):
         for cbt in Groupe2:
             if cbt.selected_par != None and cbt.allow_parade:
                 cbt.jet_parade()
+                #Log['G2'].append(cbt.potentiel_parade)
 
         for cbt in Groupe1:
             if cbt.selected_par != None and cbt.allow_parade:
                 cbt.jet_parade()
+                #Log['G1'].append(cbt.potentiel_parade)
 
         for cbt in Groupe1:
             if cbt.selected_att != None and cbt.allow_att:
                 tgt = rd.choice(Groupe2)
                 for i in range(cbt.bonus_mult):
+                    Log['G1'].append(cbt.potentiel_technique)
                     if cbt.attaque(tgt):
                         tgt.attaqued_by(cbt)
-            Log['G1'].append(cbt.pv)
+            #Log['G1'].append(cbt.pv)
 
         for cbt in Groupe2:
             if cbt.selected_att != None and cbt.allow_att:
                 tgt = rd.choice(Groupe1)
                 for i in range(cbt.bonus_mult):
+                    Log['G2'].append(cbt.potentiel_technique)
                     if cbt.attaque(tgt):
                         tgt.attaqued_by(cbt)
-            Log['G2'].append(cbt.pv)
+            #Log['G2'].append(cbt.pv)
 
         for cbt in Groupe1:
             mdist += cbt.mod_dist

@@ -70,6 +70,8 @@ class Combattant():
         self.allow_parade = True
         self.malus_armure = 1
         self.bris_armure = False
+        self.potentiel_parade = 0
+        self.potentiel_technique = 0
 
     def select_techniques(self, dist):
         if dist > 0:
@@ -143,6 +145,7 @@ class Combattant():
         else:
             diff += self.carac['CombatMainsNues']
         diff -= (self.selected_par.diff + 5)
+        self.potentiel_parade = diff
         if Jet(diff):
             self.malus_att, self.bonus_div, self.eff_dist, self.eff_contact, self.eff_mn, self.prior, self.bcontre, self.mod_dist = \
             self.selected_par.matt, self.selected_par.bdiv, self.selected_par.eff_dist, self.selected_par.eff_contact, \
@@ -158,12 +161,16 @@ class Combattant():
             diff = self.carac['FOR'] + self.carac['CombatContact'] + self.bonus_jet
         else:
             diff = self.carac['FOR'] + self.carac['CombatMainsNues'] + self.bonus_jet
+            
+        diff -= (self.selected_att.diff + 5)
 
         if self.selected_arme is not None:
-            diff -= (self.selected_arme.malus_jet + self.selected_att.diff + 5)
+            diff -= self.selected_arme.malus_jet
 
         if self.selected_att.cdist and tgt.eff_dist or self.selected_att.ccont and tgt.eff_contact or self.selected_att.cmn and tgt.eff_mn:
             diff -= self.selected_att.malus_parade*tgt.malus_att
+        
+        self.potentiel_technique = diff
 
         if Jet(diff, tgt.bcontre):
             self.bonus_att, self.malus_armure, self.allow_degats = self.selected_att.bdeg, self.selected_att.malus_armure, self.selected_att.allow_degats
