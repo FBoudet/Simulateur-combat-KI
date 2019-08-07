@@ -8,14 +8,16 @@ E = []
 n_test = 10000
 
 for i in range(n_test):
-    Reiz = Combattant(30,{'PER':8,'INT':7,'CombatDistance':7},chgt_arme=False,styles='Test_Distance',niveau=2,armes='Fusil',armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
+    Reiz = Combattant(30,{'PER':9,'INT':8,'CombatDistance':7},chgt_arme=False,styles='Test_Distance',niveau=2,armes='Fusil',armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
+    Reiz2 = Combattant(30,{'PER':9,'INT':8,'CombatDistance':7},chgt_arme=False,styles='Test_Distance',niveau=2,armes='Fusil',armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)    
     C2 = Combattant(65,{'FOR':7,'PER':5,'INT':4,'CombatMainsNues':7,'CombatContact':5,'CombatDistance':3},True,('Lame Défensive','Base Distance'),(5,0),('Hallebarde','Arc Long'),2)
-    Daven = Combattant(pv=30,carac={'FOR':9,'INT':3,'CombatMainsNues':4},chgt_arme=False,styles='Arts Martiaux',niveau=1,armes=None,armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
+    Daven = Combattant(pv=30,carac={'FOR':4,'INT':3,'CombatMainsNues':4},chgt_arme=False,styles='Arts Martiaux',niveau=1,armes=None,armure=4,bonus_jet=0,bonus_dgts_perso=0,pnj=False)
+    GrosBill = Combattant(pv=50,carac={'FOR':12,'INT':10,'CombatContact':8},chgt_arme=False,styles='Lame Rapide',niveau=6,armes='Épée Magique',armure=5,bonus_jet=1,bonus_dgts_perso=0,pnj=False)
     C4 = getPNJ('Géant des Montagnes')
     C5 = getPNJ('Œil de Naar')
     C6 = getPNJ('Poing de la Grande Déesse')
 
-    Result, Log = RandCombat([Reiz],[C5],3)
+    Result, Log = RandCombat([Reiz,Daven],[C5],3)
     E.append(Result)
     # if Result == 'Groupe1':
     #     print(Log)
