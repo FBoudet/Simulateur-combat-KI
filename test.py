@@ -15,7 +15,7 @@ for i in range(n_test):
     C5 = getPNJ('Œil de Naar')
     C6 = getPNJ('Poing de la Grande Déesse')
 
-    Result, Log = RandCombat([C5],[C6],0)
+    Result, Log = RandCombat([Reiz],[C5],3)
     E.append(Result)
     # if Result == 'Groupe1':
     #     print(Log)

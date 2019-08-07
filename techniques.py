@@ -1,5 +1,3 @@
-import numpy.random as rd
-
 class Parade():
     def __init__(self, diff, bdef, matt, bdiv, eff_dist, eff_contact, eff_mn, allow_att=True, prior=False, bcontre=False, mod_dist=0):
         self.diff = diff
@@ -51,7 +49,7 @@ Parade_ = Parade(2,4,0,1,False,True,True)
 Rapidite_Contact = Technique(8,-2,2,False,True,False)
 Feinte = Parade(2,0,6,1,False,True,False)
 Frenesie = Technique(-2,3,1,False,True,False,True,False,False)
-Botte_Feinte = Parade(10,0,100,1,False,True,False)
+Botte_Feinte = Parade(10,100,0,1,False,True,False)
 Botte_Eclair = Technique(8,0,1,False,True,False,True,False,True,0)
 Coup_Precis = Technique(5,5,1,False,True,False)
 Desarmement = Technique(6,0,1,False,True,False,False,True)

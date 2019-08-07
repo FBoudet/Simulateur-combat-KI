@@ -9,6 +9,7 @@ def Jet(diff, botte_contre=False):
     if botte_contre:
         i = 10
     else:
+        diff = min(max(-15, diff), 20)
         i = I[D.index(diff)]
     return rd.rand()*100<=i
 
@@ -55,19 +56,19 @@ def RandCombat(Groupe1, Groupe2, dist):
             if cbt.selected_att != None and cbt.allow_att:
                 tgt = rd.choice(Groupe2)
                 for i in range(cbt.bonus_mult):
-                    Log['G1'].append(cbt.potentiel_technique)
+#                    Log['G1'].append(cbt.potentiel_technique)
                     if cbt.attaque(tgt):
                         tgt.attaqued_by(cbt)
-            #Log['G1'].append(cbt.pv)
+            Log['G1'].append(cbt.pv)
 
         for cbt in Groupe2:
             if cbt.selected_att != None and cbt.allow_att:
                 tgt = rd.choice(Groupe1)
                 for i in range(cbt.bonus_mult):
-                    Log['G2'].append(cbt.potentiel_technique)
+#                    Log['G2'].append(cbt.potentiel_technique)
                     if cbt.attaque(tgt):
                         tgt.attaqued_by(cbt)
-            #Log['G2'].append(cbt.pv)
+            Log['G2'].append(cbt.pv)
 
         for cbt in Groupe1:
             mdist += cbt.mod_dist
