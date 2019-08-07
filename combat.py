@@ -16,6 +16,7 @@ def Jet(diff, botte_contre=False):
 def RandCombat(Groupe1, Groupe2, dist):
     Round = 0
     mdist = 0
+    Log = {'G1':[],'G2':[]}
     while Round<500 and len(Groupe1)>0 and len(Groupe2)>0:
         # print('Round {}, distance {}'.format(Round,dist))
         # print(Groupe1[0].pv,Groupe2[0].pv)
@@ -54,6 +55,7 @@ def RandCombat(Groupe1, Groupe2, dist):
                 for i in range(cbt.bonus_mult):
                     if cbt.attaque(tgt):
                         tgt.attaqued_by(cbt)
+            Log['G1'].append(cbt.pv)
 
         for cbt in Groupe2:
             if cbt.selected_att != None and cbt.allow_att:
@@ -61,6 +63,7 @@ def RandCombat(Groupe1, Groupe2, dist):
                 for i in range(cbt.bonus_mult):
                     if cbt.attaque(tgt):
                         tgt.attaqued_by(cbt)
+            Log['G2'].append(cbt.pv)
 
         for cbt in Groupe1:
             mdist += cbt.mod_dist
@@ -77,13 +80,13 @@ def RandCombat(Groupe1, Groupe2, dist):
         Round += 1
 
 
+    Result = 'draw'
     if Groupe1 != [] and Groupe2 == []:
-        return 'Groupe1'
+        Result = 'Groupe1'
     elif Groupe2 != [] and Groupe1 == []:
-        return 'Groupe2'
-    else :
-        print(Round)
-        return 'draw'
+        Result =  'Groupe2'
+
+    return Result, Log
 
 def Reset(Groupe):
     for cbt in Groupe:

@@ -180,15 +180,16 @@ class Combattant():
                 degats = att.carac['PER']//2 + att.carac['PER']%2
             else:
                 degats = att.carac['FOR']
-                degats += rd.randint(1,4) + att.bonus_att  - att.malus_armure*self.armure
-                if att.selected_arme is not None:
-                    degats += att.selected_arme.bonus_dgt
 
-                if att.cdist and self.eff_dist or att.ccont and self.eff_contact or att.cmn and self.eff_mn:
-                    degats -= self.bonus_def
+            degats += rd.randint(1,4) + att.bonus_att  - att.malus_armure*self.armure
+            if att.selected_arme is not None:
+                degats += att.selected_arme.bonus_dgt
 
-                degats = degats//self.bonus_div
-                degats = max(0,degats)
+            if (att.cdist and self.eff_dist) or (att.ccont and self.eff_contact) or (att.cmn and self.eff_mn):
+                degats -= self.bonus_def
+
+            degats = degats//self.bonus_div
+            degats = max(0,degats)
         else:
             degats = 0
 
